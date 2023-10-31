@@ -1,0 +1,28 @@
+#page-container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 90%;
+}
+
+#search-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#search-button {
+    flex-grow: 1;
+}
+
+#search-button {
+    flex-grow: 6;
+}
+
+#add-button {
+    flex-grow: 1;
+}
+
+.contact-container {
+    display: flex;
+    
+}
