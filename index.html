@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <nav>
@@ -21,16 +23,18 @@
     <template id="loginPage">
         <form action="">
             <input id="loginName" type="text" placeholder="name">
-            <input id="loginPasword" type="text" placeholder="pasword">
-            <button id="loginButton">submit</button>
+            <input id="loginPassword" type="text" placeholder="password">
+            <div id="loginError"></div>
+            <button id="loginButton" onclick="checkUser()">submit</button>
         </form>
     </template>
     <template id="registerPage">
         <form action="">
             <input id="registerName" type="text" placeholder="name">
-            <input id="registerPasword" type="text" placeholder="pasword">
+            <input id="registerPassword" type="password" placeholder="password">
             <button id="registerButton">submit</button>
         </form>
+        <script src="register.js"></script>
     </template>
 
     <template id="contactsPage">
@@ -64,12 +68,14 @@
         </div>
     </template>
     <script>
-        function loadPage(namePage){
+        function loadPage(namePage) {
             const content = document.getElementById("content");
             const page = document.getElementById(namePage);
-            if(page){
+            if (page) {
                 content.innerHTML = page.innerHTML;
-            } 
+            }
         }
     </script>
+    <script src="./client/js/login.js"></script>
+
 </body>
