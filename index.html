@@ -8,9 +8,9 @@
 <body>
     <header>
         <nav>
-            <a href="#" onclick="loadPage('loginPaje')">login</a>
-            <a href="#" onclick="loadPage('registerPaje')">register</a>
-            <a href="#" onclick="loadPage('main')">main</a>
+            <a href="#" onclick="loadPage('loginPage')">login</a>
+            <a href="#" onclick="loadPage('registerPage')">register</a>
+            <a href="#" onclick="loadPage('contactsPage')">main</a>
         </nav>
     </header>
     <main>
@@ -18,19 +18,50 @@
             <!-- Content will be loaded here -->
         </div>
     </main>
-    <template id="loginPaje">
+    <template id="loginPage">
         <form action="">
             <input id="loginName" type="text" placeholder="name">
             <input id="loginPasword" type="text" placeholder="pasword">
             <button id="loginButton">submit</button>
         </form>
     </template>
-    <template id="registerPaje">
+    <template id="registerPage">
         <form action="">
             <input id="registerName" type="text" placeholder="name">
             <input id="registerPasword" type="text" placeholder="pasword">
             <button id="registerButton">submit</button>
         </form>
+    </template>
+
+    <template id="contactsPage">
+        <div id="page-container">
+            <form id="search-container">
+                <div id="search-button">
+                    <input id="srchBtn" type="submit" value="search">
+                </div>
+                <div id="search-bar">
+                    <input type="text" value="search" name="searcBar">
+                </div>
+                <div id="add-button">
+                    <input id="addBtn" type="submit" value="add">
+                </div>
+            </form>
+            <div id="contacts">
+                <!-- enter number of divs as number of contacts 
+            exemple:
+            <div class="contact-container"> 
+                <div id="contact-info"> 
+                    <div class="contact-name"> ~name~ </div>
+                    <div class="contact-number"> ~phone number~ </div>
+                </div>
+                <div class="button-container"> 
+                    <div class="editBtn"> ~edit button~ </div>
+                    <div class="deleteBtn"> ~delete button~ </div>
+                </div>
+            </div>
+        -->
+            </div>
+        </div>
     </template>
     <script>
         function loadPage(namePage){
