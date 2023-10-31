@@ -32,9 +32,9 @@
         <form action="">
             <input id="registerName" type="text" placeholder="name">
             <input id="registerPassword" type="password" placeholder="password">
-            <button id="registerButton">submit</button>
+            <div id="registerError"></div>
+            <button id="registerButton" onclick="register()">submit</button>
         </form>
-        <script src="register.js"></script>
     </template>
 
     <template id="contactsPage">
@@ -76,6 +76,8 @@
             }
         }
     </script>
+    <script src="./client/js/DB.js"></script>
     <script src="./client/js/login.js"></script>
+    <script src="./client/js/register.js"></script>
 
 </body>
