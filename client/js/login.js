@@ -13,5 +13,6 @@ function checkUser() {
         document.getElementById("loginError").innerHTML = "not a valid password or name"
         return;
     }
+    localStorage.setItem("curentUser", JSON.stringify(user));
     loadPage('contactsPage');
 }

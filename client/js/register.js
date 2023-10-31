@@ -13,5 +13,6 @@ const register = () => {
         return;
     }
     addUser(name, password);
+    localStorage.setItem("curentUser", JSON.stringify(user));
     loadPage('contactsPage');
 }
