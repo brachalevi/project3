@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" onclick="loadPage('loginPaje')">login</a>
+            <a href="#" onclick="loadPage('registerPaje')">register</a>
+            <a href="#" onclick="loadPage('main')">main</a>
+        </nav>
+    </header>
+    <main>
+        <div id="content">
+            <!-- Content will be loaded here -->
+        </div>
+    </main>
+    <template id="loginPaje">
+        <form action="">
+            <input id="loginName" type="text" placeholder="name">
+            <input id="loginPasword" type="text" placeholder="pasword">
+            <button id="loginButton">submit</button>
+        </form>
+    </template>
+    <template id="registerPaje">
+        <form action="">
+            <input id="registerName" type="text" placeholder="name">
+            <input id="registerPasword" type="text" placeholder="pasword">
+            <button id="registerButton">submit</button>
+        </form>
+    </template>
+    <script>
+        function loadPage(namePage){
+            const content = document.getElementById("content");
+            const page = document.getElementById(namePage);
+            if(page){
+                content.innerHTML = page.innerHTML;
+            } 
+        }
+    </script>
+</body>
