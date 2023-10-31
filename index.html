@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="./client/css/home_page.css" rel="styledheet">
 </head>
 
 <body>
@@ -48,6 +49,17 @@
                 </div>
                 <div id="add-button">
                     <input id="addBtn" type="submit" value="add">
+                    <div id="new-contact-info">
+                        <form id="new-contact-form">
+                            <label for="new-contact-name"></label>
+                            <input type="text" id="new-contact-name">
+                            <label for="new-contact-number"></label>
+                            <input type="tel" id="new-contact-number">
+                            <input type="submit" value="submit" id="new-contact-submit">
+                        </form>
+                    </div>
+
+                    </div>
                 </div>
             </form>
             <div id="contacts">
@@ -78,6 +90,5 @@
     </script>
     <script src="./client/js/DB.js"></script>
     <script src="./client/js/login.js"></script>
-    <script src="./client/js/register.js"></script>
 
 </body>
