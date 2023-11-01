@@ -2,11 +2,20 @@
 
 let currentUser;
 
-function displayaddContactForm() {
-    currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    const apllicationForm = document.querySelector('#new-contact-info');
-    apllicationForm.style.display = 'block';
+function displayaddContactForm(){
+    console.log(1);
+    const content = document.getElementById("throw-contact-form");
+            const page = document.getElementById('new-contact-info');
+            if (page) {
+                content.innerHTML = page.innerHTML;
+            }
     document.querySelector("#new-contact-submit").addEventListener("click", addContact);
+    document.querySelector("#close-button").addEventListener("click", function () {
+        content.textContent = "";
+    })
+}
+
+function addContact (){
     let usersContacts = currentUser.contacts.usersContacts;
 
     for (let item of usersContacts) {

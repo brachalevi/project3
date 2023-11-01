@@ -1,5 +1,6 @@
 
 function checkUser() {
+    console.log("in checkUser")
     const password = document.getElementById("loginPassword").value;
     const pwRegex = /^(?=.*[a-x])(?=.*\d).{8,}$/;
     // const nameRegex = 
