@@ -10,6 +10,7 @@ class User {
 const getUsers = () => {
     return JSON.parse(localStorage.getItem('users'));
 }
+
 const creatUsers = () => {
     const users = { countId: 0, users: [] };
     localStorage.setItem("users", JSON.stringify(users));
@@ -20,8 +21,9 @@ const addUser = (name, password) => {
     usersObj.users.push(user)
     usersObj.countId += 1;
     setUsers(usersObj);
-    return user;
+    // return user;
 }
+
 const setUsers = (users) => {
     localStorage.setItem("users", JSON.stringify(users));
 }
@@ -37,6 +39,62 @@ const setUser = (user) => {
         }
     }
 }
+
+function getUser(userId) {
+    if(!isValidUserId()){
+        error();
+        return;
+    }
+
+    for (let item of getUsers().users) {
+        if (item.id == userId) {
+            return item;
+        }
+    }
+}
+
+function getContact (contactId) {
+    if(!isValidContactId()) {
+        error();
+        return;
+    }
+
+    for(let item of getUser(currentUser.id).contacts) {
+        if (item.id == contactId) {
+            return item;
+        }
+    }
+}
+
+function isValidContactId (id) {
+    let valid = false;
+    if (isNaN(id) && id % 1 !== 0) {
+        return valid;
+    }
+    for (let item of getUsers().users) {
+        if (item.id === id) {
+            valid = true;
+        }
+    }
+    return valid;
+}
+
+function isValidUserId() {
+    let valid = false;
+    if (isNaN(id) && id % 1 !== 0) {
+        return valid;
+    }
+    for (let item of getUsers().users.contacts.usersContacts) {
+        if (item.id === id) {
+            valid = true;
+        }
+    }
+    return valid;
+
+}
+
+
+
 //  creatUsers();
 
 

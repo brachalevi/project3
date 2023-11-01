@@ -56,3 +56,16 @@
 #new-contact-form * {
     margin: 3px;
 }
+
+.deleteBtn {
+    background-color: red;
+    height: 15px;
+    width: 15px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

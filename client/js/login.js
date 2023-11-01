@@ -8,6 +8,7 @@ function checkUser() {
         document.getElementById("loginError").innerHTML = "not a valid password or name"
         return;
     }
+
     const users = getUsers().users;
     const name = document.getElementById("loginName").value;
     const user = users.filter(user => user.name === name)[0];
@@ -16,6 +17,7 @@ function checkUser() {
         document.getElementById("loginError").innerHTML = "not a valid password or name"
         return;
     }
+    
     localStorage.setItem("currentUser", JSON.stringify(user));
     loadPage('contactsPage');
 }
