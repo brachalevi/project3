@@ -40,9 +40,9 @@
 
     <template id="contactsPage">
         <div id="page-container">
-            <form id="search-container">
+            <div id="search-container">
                 <div id="search-button">
-                    <input id="srchBtn" type="submit" value="search">
+                    <button id="srchBtn"> search </button>
                 </div>
                 <div id="search-bar">
                     <input type="text" placeholder="search" name="searchBar" id="search-bar-input">
@@ -50,20 +50,22 @@
                 <div id="add-button">
                     <button id="addBtn" onclick="displayaddContactForm()"> add </button>
                 </div>
-        </div>
-        </form>
-        <div id="new-contact-info">
-            <form action="" id="new-contact-form">
-                <button id="close-button">x</button>
-                <label for="new-contact-name">name: </label>
-                <input type="text" id="new-contact-name">
-                <label for="new-contact-number">number: </label>
-                <input type="tel" id="new-contact-number">
-                <button id="new-contact-submit"> submit </button>
-            </form>
-        </div>
-        <div id="contacts">
-            <!-- enter number of divs as number of contacts 
+            </div>
+            <div id="throw-contact-form"></div>
+            <template id="new-contact-info">
+                <div id="new-contact-info-container">
+                    <div id="new-contact-form">
+                        <button id="close-button">x</button>
+                        <label for="new-contact-name">name: </label>
+                        <input type="text" id="new-contact-name">
+                        <label for="new-contact-number">number: </label>
+                        <input type="tel" id="new-contact-number">
+                        <button id="new-contact-submit"> submit </button>
+                    </div>
+                </div>
+            </template>
+            <div id="contacts">
+                <!-- enter number of divs as number of contacts 
             exemple:
             <div class="contact-container"> 
                 <div class="contact-info"> 
@@ -76,6 +78,7 @@
                 </div>
             </div>
         -->
+            </div>
         </div>
     </template>
     <script>

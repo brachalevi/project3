@@ -1,21 +1,22 @@
-// const contacts = currentUser.contacts;
+
 
 function displayaddContactForm(){
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const addBtn = document.querySelector("#addBtn");
-    const apllicationForm = document.querySelector('#new-contact-info');
-    apllicationForm.style.display = 'block';
+    console.log(1);
+    const content = document.getElementById("throw-contact-form");
+            const page = document.getElementById('new-contact-info');
+            if (page) {
+                content.innerHTML = page.innerHTML;
+            }
     document.querySelector("#new-contact-submit").addEventListener("click", addContact);
+    document.querySelector("#close-button").addEventListener("click", function () {
+        content.textContent = "";
+    })
 }
 
 function addContact (){
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const addBtn = document.querySelector("#addBtn");
-    // const apllicationForm = document.querySelector('#new-contact-info');
     let name = document.querySelector("#new-contact-name").value
     let number = document.querySelector("#new-contact-number").value
     let countId = getCurrentUsersContactList().countId;
-    // console.log(currentUser.contacts.usersContacts);
     getCurrentUsersContactList().usersContacts.push({name: name, number: number, id: countId + 1})
     getCurrentUsersContactList().countId ++;
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
