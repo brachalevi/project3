@@ -27,15 +27,7 @@ function displayaddContactForm() {
 
 }
 
-// function addContact (){
-//     let usersContacts = currentUser.contacts.usersContacts;
 
-//     for (let item of usersContacts) {
-//         let contact = new ContactContainer(item.name, item.number);
-//         contact.createContactInHtml();
-
-//     }
-// }
 
 function addContact() {
     let name = document.querySelector("#new-contact-name").value

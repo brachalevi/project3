@@ -37,6 +37,15 @@ const setUser = (user) => {
         }
     }
 }
+// const getUser = (user) => {
+//     const usersObj = getUsers();
+//     const usersArr = usersObj.users;
+//     for (i = 0; i < usersArr.length; i++) {
+//         if (usersArr[i].id === user.id) {
+//             return user;
+//         }
+//     }
+// }
 //  creatUsers();
 
 
