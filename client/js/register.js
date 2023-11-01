@@ -5,14 +5,15 @@ const register = () => {
         document.getElementById("registerError").innerHTML = "not a valid password"
         return;
     }
-    const users = getUsers().users;
     const name = document.getElementById("registerName").value;
-    let user = users.filter(user => user.name === name)[0];
-    if (user) {
-        document.getElementById("registerError").innerHTML = "the name user alredy exist"
-        return;
-    }
-    user = addUser(name, password);
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    loadPage('contactsPage');
+
+    const myFAJAX = new FAJAX();
+    myFAJAX.onload = function () {
+        currentUser = this.data;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        loadPage('contactsPage');
+    };
+    myFAJAX.open('POST', `users/user/name=${name}+password=${password}`);
+    myFAJAX.send();
+
 }

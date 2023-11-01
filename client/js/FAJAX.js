@@ -3,6 +3,7 @@ class FAJAX {
     constructor() {
         this.URL = '';
         this.readyState = 0;
+        this.data = '';
         this._onload = null;
     }
 
@@ -19,10 +20,11 @@ class FAJAX {
         this.readyState = 1;
 
         // Simulate sending the request to the network and handle the response asynchronously
-        toNetwork(this.URL)
+        const result = toNetwork(this.URL)
             .then(response => {
                 if (response.status === 200) {
                     this.readyState = 2;
+                    this.data = response.data;
                     if (this._onload) {
                         this._onload(); // Call the onload callback to indicate a successful response
                     }
