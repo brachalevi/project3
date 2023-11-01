@@ -7,12 +7,13 @@ const register = () => {
     }
     const users = getUsers().users;
     const name = document.getElementById("registerName").value;
-    const user = users.filter(user => user.name === name)[0];
+    let user = users.filter(user => user.name === name)[0];
     if (user) {
         document.getElementById("registerError").innerHTML = "the name user alredy exist"
         return;
     }
-    addUser(name, password);
-    localStorage.setItem("curentUser", JSON.stringify(user));
+    user = addUser(name, password);
+    // console.log(user);/
+    localStorage.setItem("currentUser", JSON.stringify(user));
     loadPage('contactsPage');
 }

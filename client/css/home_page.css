@@ -14,8 +14,16 @@
     flex-grow: 1;
 }
 
-#search-button {
-    flex-grow: 6;
+#srchBtn {
+    align-self: center;
+}
+
+#search-bar {
+    flex-grow: 5;
+}
+
+#search-bar-input {
+    width: 100%;
 }
 
 #add-button {
@@ -28,5 +36,23 @@
 }
 
 #new-contact-info {
-    display: none;
+    /* display: none; */
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    right: 18%;
+}
+
+#new-contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#new-contact-submit {
+    width: 30%;
+    align-self: center;
+}
+
+#new-contact-form * {
+    margin: 3px;
 }

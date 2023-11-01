@@ -7,9 +7,11 @@ const creatUsers = () => {
 }
 const addUser = (name, password) => {
     const users = getUsers();
-    users.users.push({ name: name, password: password, id: users.countId +1, contacts: {countId:0, usersContacts:[]} })
+    const user = {name: name, password: password, id: users.countId +1, contacts: {countId:0, usersContacts:[]} }
+    users.users.push(user)
     users.countId +=1;
     setUsers(users);
+    return user;
 }
 const setUsers = (users)=>{
     localStorage.setItem("users", JSON.stringify(users));
