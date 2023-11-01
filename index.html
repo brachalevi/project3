@@ -13,7 +13,7 @@
         <nav>
             <a onclick="loadPage('loginPage')">login</a>
             <a onclick="loadPage('registerPage')">register</a>
-            <a onclick="loadPage('contactsPage')">main</a>
+            <a onclick="loadPage('contactsPage', displayContact)">main</a>
         </nav>
     </header>
     <main>
@@ -82,13 +82,15 @@
         </div>
     </template>
     <script>
-        function loadPage(namePage) {
+        function loadPage(namePage, func) {
             const content = document.getElementById("content");
             const page = document.getElementById(namePage);
             if (page) {
                 content.innerHTML = page.innerHTML;
             }
-            console.log(page);
+            if(func){
+                func();
+            }
         }
     </script>
     <script src="./client/js/DB.js"></script>
