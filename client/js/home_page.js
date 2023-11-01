@@ -1,48 +1,51 @@
-// const contacts = currentUser.contacts;
 
-function displayaddContactForm(){
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const addBtn = document.querySelector("#addBtn");
+
+let currentUser;
+
+function displayaddContactForm() {
+    currentUser = JSON.parse(localStorage.getItem('currentUser'))
     const apllicationForm = document.querySelector('#new-contact-info');
     apllicationForm.style.display = 'block';
     document.querySelector("#new-contact-submit").addEventListener("click", addContact);
-}
+    let usersContacts = currentUser.contacts.usersContacts;
 
-function addContact (){
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const addBtn = document.querySelector("#addBtn");
-    // const apllicationForm = document.querySelector('#new-contact-info');
-    let name = document.querySelector("#new-contact-name").value
-    let number = document.querySelector("#new-contact-number").value
-    let countId = getCurrentUsersContactList().countId;
-    // console.log(currentUser.contacts.usersContacts);
-    getCurrentUsersContactList().usersContacts.push({name: name, number: number, id: countId + 1})
-    getCurrentUsersContactList().countId ++;
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    number = '';
-    name = '';
-    addContactToDisplay()
-}
+    for (let item of usersContacts) {
+        let contact = new ContactContainer(item.name, item.number);
+        contact.createContactInHtml();
 
-function addContactToDisplay () {
-    let contactsArr = getCurrentUsersContactList().usersContacts
-    for (let item of contactsArr) {
-        
     }
 }
 
-function getCurrentUsersContactList () {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser.contacts;
+function addContact() {
+    let name = document.querySelector("#new-contact-name").value
+    let number = document.querySelector("#new-contact-number").value
+    let countId = currentUser.contacts.countId;
+    currentUser.contacts.usersContacts.push({ name: name, number: number, id: countId + 1 })
+    currentUser.contacts.countId++;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    number = '';
+    name = '';
+    addContactToDisplay();
+    setUser(currentUser);
 }
 
-class ContactContainet {
+function addContactToDisplay() {
+    let usersContacts = currentUser.contacts.usersContacts;
+    const newUser = usersContacts[usersContacts.length - 1];
+
+    let contact = new ContactContainer(newUser.name, newUser.number);
+    contact.createContactInHtml();
+
+}
+
+
+class ContactContainer {
     constructor(name, number) {
         this.name = name
         this.number = number
     }
 
-    createContactInHtml () {
+    createContactInHtml() {
         let divContainer = document.createElement("div");
         let divInfo = document.createElement("div");
         let divName = document.createElement("div");
@@ -64,10 +67,8 @@ class ContactContainet {
         divContainer.appendChild(divBtn);
         divBtn.appendChild(editBtn);
         divBtn.appendChild(deleteBtn);
+        divName.textContent = this.name;
+        divNumber.textContent = this.number;
     }
 
-    insertContact() {
-        this.createContactInHtml();
-        
-    }
 }

@@ -16,25 +16,27 @@ const creatUsers = () => {
 }
 const addUser = (name, password) => {
     const usersObj = getUsers();
-    const user = new User(name, password, users.countId + 1);
+    const user = new User(name, password, usersObj.countId + 1);
     usersObj.users.push(user)
     usersObj.countId += 1;
-    setUsers(users);
+    setUsers(usersObj);
     return user;
 }
 const setUsers = (users) => {
     localStorage.setItem("users", JSON.stringify(users));
 }
 
-const setUser = (user)=>{
+const setUser = (user) => {
     const usersObj = getUsers();
-    for(i=0;i<setUser.length;i++){
-        if(usersObj.users[i].id = user.id){
-            usersObj.users[i] = user;
+    const usersArr = usersObj.users;
+    for (i = 0; i < usersArr.length; i++) {
+        if (usersArr[i].id === user.id) {
+            usersArr[i] = user;
             setUsers(usersObj);
             return user;
         }
     }
 }
+//  creatUsers();
 
-creatUsers();
+
