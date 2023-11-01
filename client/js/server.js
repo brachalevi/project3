@@ -41,10 +41,11 @@ function GET(arr) {
 function POST(arr) {
     isValidUrl(arr);
 
+    
     let userInfoArr = arr[2].split('+');
     if (!userInfoArr[0].includes('name') && !userInfoArr[1].includes('password')) {
         error();
-        return;
+        return false;
     }
 
     let userName = userInfoArr[0].split('=')[1];
@@ -56,6 +57,11 @@ function POST(arr) {
 function PUT(arr) {
     isValidUrl(arr);
 
+    if(!arr.includes('contact')) {
+        error();
+        return false;
+    }
+
     let contactInfoArr = arr[2].split('+');
 
     if (!contactInfoArr[0].includes('name') && !contactInfoArr[1].includes('number')) {
@@ -66,8 +72,16 @@ function PUT(arr) {
     let contactName = contactInfoArr[0].split('=')[1];
     let contactNumber = contactInfoArr[1].split('=')[1];
 
+    //return currentUser
+    for(let item of getUser(currentUser.id).contacts.usersContacts) {
+        if (contactNumber === item.number) {
+            //change
+            return;
+        } 
+    }
 
     
+
 }
 
 function DELETE(arr) {
