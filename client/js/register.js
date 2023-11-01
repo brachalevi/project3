@@ -12,8 +12,7 @@ const register = () => {
         document.getElementById("registerError").innerHTML = "the name user alredy exist"
         return;
     }
-    user = addUser(name, password);
-    // console.log(user);/
-    localStorage.setItem("currentUser", JSON.stringify(user));
+    addUser(name, password);
+    localStorage.setItem("curentUser", JSON.stringify(user));
     loadPage('contactsPage');
 }
