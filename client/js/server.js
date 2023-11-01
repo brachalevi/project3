@@ -39,7 +39,9 @@ function GET(arr) {
 
 
 function POST(arr) {
-    isValidUrl(arr);
+    if(!isValidUrl(arr)){
+        return false;
+    }
 
     
     let userInfoArr = arr[2].split('+');
@@ -51,11 +53,13 @@ function POST(arr) {
     let userName = userInfoArr[0].split('=')[1];
     let userPassword = userInfoArr[1].split('=')[1];
 
-    addUser(userName, userPassword);
+    return addUser(userName, userPassword);
 }
 
 function PUT(arr) {
-    isValidUrl(arr);
+    if(!isValidUrl(arr)){
+        return false;
+    }
 
     if(!arr.includes('contact')) {
         error();
@@ -66,7 +70,7 @@ function PUT(arr) {
 
     if (!contactInfoArr[0].includes('name') && !contactInfoArr[1].includes('number')) {
         error();
-        return;
+        return false;
     }
 
     let contactName = contactInfoArr[0].split('=')[1];
@@ -94,7 +98,8 @@ function error() {
 
 function isValidUrl (arr) {
     if (arr[1] === 'user') {
-        error();
+       
         return true;
     }
+    error();
 }

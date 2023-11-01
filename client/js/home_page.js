@@ -29,14 +29,24 @@ function displayaddContactForm() {
 function addContact() {
     let name = document.querySelector("#new-contact-name").value
     let number = document.querySelector("#new-contact-number").value
-    let countId = currentUser.contacts.countId;
-    currentUser.contacts.usersContacts.push({ name: name, number: number, id: countId + 1 })
-    currentUser.contacts.countId++;
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    number = '';
-    name = '';
-    addContactToDisplay();
-    setUser(currentUser);
+    // let countId = currentUser.contacts.countId;
+    // currentUser.contacts.usersContacts.push({ name: name, number: number, id: countId + 1 })
+    // currentUser.contacts.countId++;
+    //setUser(currentUser);
+    const myFAJAX = new FAJAX();
+    myFAJAX.onload = function () {
+        currentUser = JSON.parse(this.data);
+        console.log(this.data);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        number = '';
+        name = '';
+        addContactToDisplay();
+    };
+
+    // Simulate making a request
+    myFAJAX.open('PUT', `users/user/${currentUser.id}/contact/name=${name}+number=${number}`);
+    myFAJAX.send();
+
 }
 
 function addContactToDisplay() {

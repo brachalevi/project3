@@ -21,7 +21,7 @@ const addUser = (name, password) => {
     usersObj.users.push(user)
     usersObj.countId += 1;
     setUsers(usersObj);
-    // return user;
+    return user;
 }
 
 const setUsers = (users) => {

@@ -3,7 +3,7 @@ class CustomServer {
     static respondToRequest(request) {
         let result = whichMethod(request);
         if (result) {
-            return { status: 200, data: 'Server Response: This is your data.' };
+            return { status: 200, data: result};
         } else {
             return { status: 404, data: 'Server Response: Not Found' };
         }
@@ -12,15 +12,14 @@ class CustomServer {
 
 class CustomClient {
     // Simulate the client's request
-    static simulateRequest(method, url) {
-        const request = `${method} ${url}`;
+    static simulateRequest(request) {
         return CustomServer.respondToRequest(request);
     }
 }
 
 function toNetwork(url) {
     // Simulate a client-side request
-    const clientRequest = CustomClient.simulateRequest('GET', '/data');
+    const clientRequest = CustomClient.simulateRequest(url);
 
     // Simulate sending the URL to the network and receiving a response asynchronously.
     // In your actual implementation, this function would interact with your simulated network.
