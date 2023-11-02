@@ -22,19 +22,21 @@
         </div>
     </main>
     <template id="loginPage">
+        <h1>login</h1>
         <form action="">
             <input id="loginName" type="text" placeholder="name">
-            <input id="loginPassword" type="text" placeholder="password">
+            <input id="loginPassword" type="password" placeholder="password">
             <div id="loginError"></div>
-            <button id="loginButton" onclick="checkUser()">submit</button>
+            <button id="loginButton" type="button" onclick="checkUser()">submit</button>
         </form>
     </template>
     <template id="registerPage">
+        <h1>register</h1>
         <form action="">
             <input id="registerName" type="text" placeholder="name">
             <input id="registerPassword" type="password" placeholder="password">
             <div id="registerError"></div>
-            <button id="registerButton" onclick="register()">submit</button>
+            <button id="registerButton" type="button" onclick="register()">submit</button>
         </form>
     </template>
 
@@ -42,7 +44,7 @@
         <div id="page-container">
             <div id="search-container">
                 <div id="search-button">
-                    <button id="srchBtn"> search </button>
+                    <button id="srchBtn" onclick = "search()"> search </button>
                 </div>
                 <div id="search-bar">
                     <input type="text" placeholder="search" name="searchBar" id="search-bar-input">

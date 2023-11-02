@@ -15,6 +15,7 @@ const creatUsers = () => {
     const users = { countId: 0, users: [] };
     localStorage.setItem("users", JSON.stringify(users));
 }
+
 const addUser = (name, password) => {
     const usersObj = getUsers();
     const user = new User(name, password, usersObj.countId + 1);
@@ -54,9 +55,9 @@ function getUser(userId) {
 }
 
 function getContact (contactId) {
-    if(!isValidContactId()) {
+    if(!isValidContactId(contactId)) {
         error();
-        return;
+        return false;
     }
 
     for(let item of getUser(currentUser.id).contacts) {
@@ -64,6 +65,20 @@ function getContact (contactId) {
             return item;
         }
     }
+}
+
+function deleteContactById(contactNumber, userId) {
+    let user = getUser(userId);
+    let contactsArr = user.contacts.usersContacts;
+    let indexToDelete;
+    for (let item of contactsArr) {
+        if(item.number == contactNumber) {
+            indexToDelete =  contactsArr.indexOf(item)
+        }
+    }
+
+    contactsArr.splice(indexToDelete, 1);
+    return setUser(user)
 }
 
 function pushNewContact(name, number, userId) {
@@ -100,6 +115,8 @@ function isValidContactId(id) {
     return valid;
 
 }
+
+
 
 
 
