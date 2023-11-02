@@ -55,8 +55,8 @@ function getUser(userId) {
 
 function getContact (contactId) {
     if(!isValidContactId()) {
-        error();
-        return;
+        return error();
+        //return;
     }
 
     for(let item of getUser(currentUser.id).contacts) {
