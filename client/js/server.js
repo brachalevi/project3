@@ -1,5 +1,6 @@
 /* url exemple :
     get a user => url: users/user/~id~ <= array length: 3
+    Get a user by name => url: users/user/login/name=~username~+password=~password => array length: 4
     get a contact => url: users/user/~id~/contact/~id~ <= array length: 5
     post user => url: users/user/name=~username~+password=~password~ <= array length: 3
     put new contact => url: users/user/~id~/contact/name=~contactname~+number=~contactnumber~ => array length: 5
@@ -35,8 +36,18 @@ function GET(arr) {
         if (isValidContactId(numberId)) {
             return getContact(numberId);
         }
+    } else if (arr.length === 4) {
+        let userInfoArr = arr[2].split('+');
+        let userName = userInfoArr[0].split('=')[1];
+        let userPassword = userInfoArr[1].split('=')[1];
+        for (let item of getUsers().users) {
+            if (item.name == userName && item.password == userPassword) {
+                return item;
+            }
+        }
     }
     error();
+    return false;
 }
 
 

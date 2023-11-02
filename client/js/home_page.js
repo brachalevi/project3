@@ -5,7 +5,7 @@ function displayContact() {
     // let contactsDiv = document.createElement("div");
     // contactsDiv.setAttribute("id", "contacts");
     // document.querySelector('#page-container').appendChild(contactsDiv);
-    currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    // currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let usersContacts = currentUser.contacts.usersContacts;
     for (let item of usersContacts) {
         let contact = new ContactContainer(item.name, item.number);
@@ -33,12 +33,12 @@ function deleteContact () {
     myFAJAX.onload = function () {
         currentUser = this.data;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        displayContact();
     };
 
     // Simulate making a request
     myFAJAX.open('DELETE', `users/user/${currentUser.id}/contact/${contactNumberToDelete}`);
     myFAJAX.send();
-    displayContact();
 }
 
 
