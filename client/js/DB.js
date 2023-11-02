@@ -41,7 +41,7 @@ const setUser = (user) => {
 }
 
 function getUser(userId) {
-    if(!isValidUserId()){
+    if(!isValidUserId(userId)){
         error();
         return;
     }
@@ -66,20 +66,28 @@ function getContact (contactId) {
     }
 }
 
-function isValidContactId (id) {
+function pushNewContact(name, number, userId) {
+    let user = getUser(userId);
+    let countId = user.contacts.countId;
+    user.contacts.usersContacts.push( {name: name, number: number, id: countId + 1} )
+    user.contacts.countId++
+    return setUser(user);
+}
+
+function isValidUserId (id) {
     let valid = false;
     if (isNaN(id) && id % 1 !== 0) {
         return valid;
     }
     for (let item of getUsers().users) {
-        if (item.id === id) {
+        if (item.id == id) {
             valid = true;
         }
     }
     return valid;
 }
 
-function isValidUserId() {
+function isValidContactId(id) {
     let valid = false;
     if (isNaN(id) && id % 1 !== 0) {
         return valid;

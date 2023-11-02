@@ -61,12 +61,16 @@ function PUT(arr) {
         return false;
     }
 
+    if(!isValidUserId(arr[2])){
+        return false;
+    }
+
     if(!arr.includes('contact')) {
         error();
         return false;
     }
 
-    let contactInfoArr = arr[2].split('+');
+    let contactInfoArr = arr[4].split('+');
 
     if (!contactInfoArr[0].includes('name') && !contactInfoArr[1].includes('number')) {
         error();
@@ -77,15 +81,14 @@ function PUT(arr) {
     let contactNumber = contactInfoArr[1].split('=')[1];
 
     //return currentUser
-    for(let item of getUser(currentUser.id).contacts.usersContacts) {
+    for(let item of getUser(arr[2]).contacts.usersContacts) {
         if (contactNumber === item.number) {
             //change
             return;
         } 
     }
 
-    
-
+    return pushNewContact(contactName, contactNumber, arr[2]);
 }
 
 function DELETE(arr) {
