@@ -10,7 +10,7 @@ const register = () => {
     const myFAJAX = new FAJAX();
     myFAJAX.onload = function () {
         currentUser = this.data;
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        // localStorage.setItem("currentUser", JSON.stringify(currentUser));
         loadPage('contactsPage');
     };
 

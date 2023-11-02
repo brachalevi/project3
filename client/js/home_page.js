@@ -1,10 +1,12 @@
 let currentUser;
 
 function displayContact() {
-    currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
+    document.querySelectorAll(".contact-container").forEach(el => el.remove());
+    // let contactsDiv = document.createElement("div");
+    // contactsDiv.setAttribute("id", "contacts");
+    // document.querySelector('#page-container').appendChild(contactsDiv);
+    // currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let usersContacts = currentUser.contacts.usersContacts;
-
     for (let item of usersContacts) {
         let contact = new ContactContainer(item.name, item.number);
         contact.createContactInHtml();
@@ -22,6 +24,21 @@ function displayaddContactForm() {
         content.textContent = "";
     })
 
+}
+
+function deleteContact () {
+    const contactToDelete = this.parentElement.parentElement;
+    const contactNumberToDelete = contactToDelete.querySelector(".contact-number").textContent.split(":")[1].trim();
+    const myFAJAX = new FAJAX();
+    myFAJAX.onload = function () {
+        currentUser = this.data;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        displayContact();
+    };
+
+    // Simulate making a request
+    myFAJAX.open('DELETE', `users/user/${currentUser.id}/contact/${contactNumberToDelete}`);
+    myFAJAX.send();
 }
 
 
@@ -52,6 +69,23 @@ function addContactToDisplay() {
     let contact = new ContactContainer(newUser.name, newUser.number);
     contact.createContactInHtml();
 
+}
+
+function search() {
+    let searchValue = document.querySelector("#search-bar-input");
+    const myFAJAX = new FAJAX();
+    myFAJAX.onload = function () {
+        currentUser = this.data;
+        // console.log(this.data);
+        // localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        searchValue.value = '';
+        displayContact();
+    };
+
+    // Simulate making a request
+    myFAJAX.open('GET', `users/user/${currentUser.id}/contact/${searchValue.value}`);
+    myFAJAX.send();
+    
 }
 
 
@@ -86,6 +120,7 @@ class ContactContainer {
         editBtn.textContent = 'edit';
         divName.textContent = `name: ${this.name}`;
         divNumber.textContent = `number: ${this.number}`;
+        deleteBtn.addEventListener("click", deleteContact)
     }
 
 }
