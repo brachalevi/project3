@@ -32,16 +32,16 @@ class CustomClient {
 
 function toNetwork(url) {
     // Simulate a client-side request
-    const clientRequest = CustomClient.simulateRequest(url);
+    return clientRequest = CustomClient.simulateRequest(url);
 
     // Simulate sending the URL to the network and receiving a response asynchronously.
     // In your actual implementation, this function would interact with your simulated network.
     // Simulate a delay and return a Promise with a response object.
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulate a successful response with status 200
-            resolve(clientRequest);
+    // return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         // Simulate a successful response with status 200
+    //         resolve(clientRequest);
 
-        }, 1000);
-    });
+    //     }, 1000);
+    // });
 }
