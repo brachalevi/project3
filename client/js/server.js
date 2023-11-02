@@ -18,6 +18,7 @@ function whichMethod(command) {
     let urlArr = url.split('/');
     if (urlArr[0] === 'users') {
         return window[method](urlArr);
+        //take care
     }
 
     error();
@@ -37,7 +38,7 @@ function GET(arr) {
             return getContact(numberId);
         }
     } else if (arr.length === 4) {
-        let userInfoArr = arr[2].split('+');
+        let userInfoArr = arr[3].split('+');
         let userName = userInfoArr[0].split('=')[1];
         let userPassword = userInfoArr[1].split('=')[1];
         for (let item of getUsers().users) {

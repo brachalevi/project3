@@ -19,7 +19,7 @@ function checkUser() {
 
     // Simulate making a request
     // myFAJAX.open('POST', `users/user/register`, JSON.stringify({name: name, password: password}));
-    myFAJAX.open('GET', `users/user/name=${name}+password=${password}`);
+    myFAJAX.open('GET', `users/user/login/name=${name}+password=${password}`);
     myFAJAX.send()
 
     // const users = getUsers().users;
