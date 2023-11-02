@@ -10,8 +10,7 @@ const register = () => {
     const myFAJAX = new FAJAX();
     myFAJAX.onload = function () {
         currentUser = this.data;
-        // localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        loadPage('contactsPage');
+        loadPage('contactsPage', displayContact);
     };
 
     myFAJAX.open('POST', `users/user/name=${name}+password=${password}`);

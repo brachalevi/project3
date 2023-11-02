@@ -32,7 +32,8 @@
 
 .contact-container {
     display: flex;
-    
+    border: 2px dashed black;
+    margin: 3px;
 }
 
 #new-contact-info-container {

@@ -8,6 +8,7 @@
     delete contact => url: users/user/~id~/contact/number => array length: 5
 */
 
+
 let method;
 let url;
 
@@ -17,23 +18,25 @@ function whichMethod(command) {
     url = commandArr[1];
     let urlArr = url.split('/');
     if (urlArr[0] === 'users') {
-        return window[method](urlArr);
-        //take care
+        if (window[method]) {
+            return window[method](urlArr);
+        }
     }
 
-    error();
+    return 400;
 }
 
 function GET(arr) {
     const numberId = Number(arr[2])
-    isValidUrl(arr);
+    if (isValidUrl(arr) === false) {
+        return 400;
+    }
 
     if (arr.length === 3) {
         if (isValidUserId(numberId)) {
             return getUser(numberId);
         }
-    } else if (arr.length === 5) { // change
-        // for ()
+    } else if (arr.length === 5) { 
         if (isValidContactId(numberId)) {
             return getContact(numberId);
         }
@@ -47,21 +50,21 @@ function GET(arr) {
             }
         }
     }
-    error();
-    return false;
+
+    return 404;
 }
 
 
 function POST(arr) {
-    if (!isValidUrl(arr)) {
-        return false;
+    if (isValidUrl(arr) === false) {
+        return 400;
     }
 
 
     let userInfoArr = arr[2].split('+');
     if (!userInfoArr[0].includes('name') && !userInfoArr[1].includes('password')) {
         error();
-        return false;
+        return 400;
     }
 
     let userName = userInfoArr[0].split('=')[1];
@@ -71,34 +74,31 @@ function POST(arr) {
 }
 
 function PUT(arr) {
-    if (!isValidUrl(arr)) {
-        return false;
+    if (isValidUrl(arr) === false) {
+        return 400;
     }
 
     if (!isValidUserId(arr[2])) {
-        return false;
+        return 404;
     }
 
     if (arr[3] !== 'contact') {
-        error();
-        return false;
+        return 400;
     }
 
     let contactInfoArr = arr[4].split('+');
 
     if (!contactInfoArr[0].includes('name') && !contactInfoArr[1].includes('number')) {
         error();
-        return false;
+        return 400;
     }
 
     let contactName = contactInfoArr[0].split('=')[1];
     let contactNumber = contactInfoArr[1].split('=')[1];
 
-    //return currentUser
     for (let item of getUser(arr[2]).contacts.usersContacts) {
         if (contactNumber === item.number) {
-            //change
-            return;
+            return 400;
         }
     }
 
@@ -106,31 +106,28 @@ function PUT(arr) {
 }
 
 function DELETE(arr) {
-    if (!isValidUrl(arr)) {
-        return false;
+    if (isValidUrl(arr) === false) {
+        return 400;
     }
 
     if (!isValidUserId(arr[2])) {
-        return false;
+        return 404;
     }
 
     if (arr[3] !== 'contact') {
-        error();
-        return false;
+        return 400;
     }
 
-    let number = arr[4];
+
     return deleteContactById(arr[4], arr[2])
-
 }
 
-function error() {
-
-}
 
 function isValidUrl(arr) {
     if (arr[1] === 'user') {
         return true;
     }
-    error();
+    return false;
 }
+
+

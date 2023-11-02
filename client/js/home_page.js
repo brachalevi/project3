@@ -32,7 +32,6 @@ function deleteContact () {
     const myFAJAX = new FAJAX();
     myFAJAX.onload = function () {
         currentUser = this.data;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         displayContact();
     };
 
@@ -49,8 +48,8 @@ function addContact() {
     const myFAJAX = new FAJAX();
     myFAJAX.onload = function () {
         currentUser = this.data;
-        console.log(this.data);
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        // console.log(this.data);
+        // localStorage.setItem('currentUser', JSON.stringify(currentUser));
         number.value = '';
         name.value = '';
         addContactToDisplay();
