@@ -17,23 +17,25 @@ class FAJAX {
     }
 
     send() {
-        this.readyState = 1;
+        if (this.readyState !== 1) {
+            throw new Error('Call open method before send');
+        }
+        this.readyState = 2;
 
-        // Simulate sending the request to the network and handle the response asynchronously
-        const result = toNetwork(this.URL)
-            .then(response => {
-                if (response.status === 200) {
-                    this.readyState = 2;
-                    this.data = response.data;
-                    if (this._onload) {
-                        this._onload(); // Call the onload callback to indicate a successful response
-                    }
-                } else {
-                    this.readyState = 3; // Handle errors
+        const response = toNetwork(this.URL);
+
+        setTimeout(() => {
+            this.status = response.status
+            if (response.status === 200) {
+                this.readyState = 3;
+                this.data = response.data;
+                if (this._onload) {
+                    this._onload(); // Call the onload callback to indicate a successful response
                 }
-            })
-            .catch(error => {
-                this.readyState = 3; // Handle network errors
-            });
+            } else {
+                this.readyState = 4; // Handle errors
+            }
+        }, 1000);
     }
+
 }
